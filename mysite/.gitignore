@@ -1,0 +1,16 @@
+# Mengabaikan Environment bawaan
+.env
+
+# Mengabaikan Database SQLite lokal
+*.sqlite3
+*.db
+hamz
+hamzanwadi
+hamzanwadi_innovation
+
+# Mengabaikan cache python
+__pycache__/
+*.pyc
+
+# Mengabaikan folder media atau static lokal (opsional, sesuaikan kebutuhan)
+media/

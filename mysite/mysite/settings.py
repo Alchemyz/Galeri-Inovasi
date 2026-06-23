@@ -1,5 +1,6 @@
 import os  # isort:skip
 gettext = lambda s: s
+import environ
 DATA_DIR = os.path.dirname(os.path.dirname(__file__))
 """
 Django settings for mysite project.
@@ -12,21 +13,23 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+env = environ.Env(
+    DEBUG=(bool, False)
+)
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'eyh04oaku0u(b0(=3s!zfwheo58z-0040_0k#gb*z-k6x)jt0o'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = env.bool('DEBUG', default=True)
 
 ALLOWED_HOSTS = [
     
