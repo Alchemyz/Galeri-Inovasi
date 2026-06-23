@@ -1,0 +1,142 @@
+{% extends "themes/home.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ berita.judul }}</title>
+</head>
+<body>
+    <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Detail Inovasi</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li class="current">Portfolio Details</li>
+          </ol>
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+
+    <!-- Portfolio Details Section -->
+    <section id="portfolio-details" class="portfolio-details section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-6">
+            <div class="portfolio-details-slider swiper init-swiper">
+
+              <script type="application/json" class="swiper-config">
+                {
+                  "loop": true,
+                  "speed": 600,
+                  "autoplay": {
+                    "delay": 5000
+                  },
+                  "slidesPerView": "auto",
+                  "pagination": {
+                    "el": ".swiper-pagination",
+                    "type": "bullets",
+                    "clickable": true
+                  }
+                }
+              </script>
+
+              <div class="swiper-wrapper align-items-center">
+                <div class="swiper-slide">
+                  {% if berita.gambar %}
+                 <img src="{{ berita.gambar.url }}" class="img-fluid" alt="{{ berita.judul }}" >
+                 {% endif %}
+                </div>
+              </div>
+              
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
+              <h3>{{ berita.judul }}</h3>
+              <ul>
+                <li><strong>Inovator:</strong>  {{ berita.inovator }} </li>
+                <li><strong>Institusi:</strong>  {{ berita.institusi }}</li>
+                <li><strong>Kategori:</strong>  {{ berita.kategori }}</li>
+                <li><strong>Project date</strong>: {{ berita.tanggal|date:"d M Y" }}</li>
+               
+              </ul>
+            </div>
+            <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
+              <h2>Deskripsi Inovasi</h2>
+              <p>
+                <p>{{ berita.isi|linebreaks }}</p>
+              </p>
+              <h2>Potensi</h2>
+              <p>{{ berita.potensi|linebreaks }}</p>
+            </div>
+          </div>
+        </div>
+        <hr style="margin-top: 40px;">
+
+      <div class="row gy-4">
+        <div class="col-lg-6" id="like-section" data-aos="fade-up" data-aos-delay="400">
+          <h4>Suka Inovasi Ini?</h4>
+          <h4>{{ berita.likes.count }} Suka</h4>
+          {% if user.is_authenticated %}
+              <a href="{% url 'like_inovasi' berita.id %}" class="btn btn-primary">
+                  {% if user in berita.likes.all %}
+                      Batalkan Suka
+                  {% else %}
+                      Suka
+                  {% endif %}
+              </a>
+          {% else %}
+              <p>Silakan <a href="{% url 'login' %}">login</a> untuk memberi suka.</p>
+          {% endif %}
+        </div>
+
+        <div class="col-lg-6" id="comments-section" data-aos="fade-up" data-aos-delay="500" style="margin-top: 40px;">
+          <h4>Komentar ({{ komentar_list.count }})</h4>
+
+          {% if user.is_authenticated %}
+              <form method="post" class="mt-4">
+                  {% csrf_token %}
+                  
+                  <div class="mb-3">
+                    {{ komentar_form.isi_komentar }}
+                  </div>
+                  
+                  <button type="submit" class="btn btn-success">Kirim Komentar</button>
+              </form>
+          {% else %}
+              <p>Silakan <a href="{% url 'login' %}">login</a> untuk meninggalkan komentar.</p>
+          {% endif %}
+          
+          <hr>
+
+          <div class="comments-list mt-4">
+            {% for komentar in komentar_list %}
+                <div class="comment-box" style="border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px;">
+                    <strong>{{ komentar.penulis.username }}</strong>
+                    <small class="text-muted">pada {{ komentar.tanggal_komentar|date:"d M Y, H:i" }}</small>
+                    <p style="margin-top: 5px;">{{ komentar.isi_komentar|linebreaks }}</p>
+                </div>
+            {% empty %}
+                <p>Belum ada komentar.</p>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      </div>
+
+    </section><!-- /Portfolio Details Section -->
+
+  </main>
+</body>
+</html>
+{% endblock %}

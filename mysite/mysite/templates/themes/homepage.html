@@ -1,0 +1,258 @@
+{% extends "themes/home.html" %} 
+{% load static %} 
+{% load cms_tags %} 
+{% block content %} 
+{% if is_home %}
+<section id="hero" class="hero section">
+  <div class="container">
+    {% for c in banner%}
+    <div class="row gy-4">
+      <div
+        class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center"
+        data-aos="fade-up"
+      >
+        <h1>{{ c.judul }}</h1>
+        <p>Inovasi terbaru mahasiswa Universitas Hamzanwadi</p>
+        <div class="d-flex">
+          <a href="#portfolio" class="btn-get-started">Jelajahi Galeri</a>
+          <a
+            href="{{c.link_video}}"
+            class="glightbox btn-watch-video d-flex align-items-center"
+            ><i class="bi bi-play-circle"></i><span>Watch Video</span></a
+          >
+        </div>
+      </div>
+      <div
+        class="col-lg-6 order-1 order-lg-2 hero-img"
+        data-aos="zoom-out"
+        data-aos-delay="100"
+      >
+      {% if c.gambar %}
+        <img src="{{c.gambar.url}}" class="img-fluid animated" alt="" />
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+<!-- /Hero Section -->
+
+<!-- Featured Services Section -->
+<section id="featured-services" class="featured-services section">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="100">
+        <div class="service-item position-relative">
+          <div class="icon"><i class="bi bi-activity icon"></i></div>
+          <h4><a href="" class="stretched-link">Jelajahi Galeri Inovasi</a></h4>
+          <p>
+            Temukan database lengkap berisi ratusan proyek, purwarupa, dan penelitian unggulan dari sivitas akademika yang siap untuk dikembangkan dan disinergikan.
+          </p>
+        </div>
+      </div>
+      <!-- End Service Item -->
+
+      <div class="col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="200">
+        <div class="service-item position-relative">
+          <div class="icon">
+            <i class="bi bi-bounding-box-circles icon"></i>
+          </div>
+          <h4><a href="" class="stretched-link">Jalin Kemitraan Strategis</a></h4>
+          <p>
+           Terhubung langsung dengan para peneliti, dosen, dan mahasiswa berbakat. Platform ini memfasilitasi kolaborasi antara akademisi dan industri.
+          </p>
+        </div>
+      </div>
+      <!-- End Service Item -->
+
+      <div class="col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="300">
+        <div class="service-item position-relative">
+          <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
+          <h4><a href="" class="stretched-link">Komersialisasi & Alih Teknologi</a></h4>
+          <p>
+            Kami membantu menjembatani ide-ide brilian dari laboratorium ke pasar, memfasilitasi proses alih teknologi dan hilirisasi produk.
+          </p>
+        </div>
+      </div>
+      <!-- End Service Item -->
+    </div>
+  </div>
+</section>
+<!-- /Featured Services Section -->
+
+<!-- About Section -->
+<section id="about" class="about section">
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <span>TENTANG KAMI<br /></span>
+    <h2>Tentang Hamzanwadi Innovation</h2>
+    <p>Menjembatani Inovasi, Industri, dan Masyarakat</p>
+  </div>
+  <!-- End Section Title -->
+
+  <div class="container">
+    <div class="row gy-4">
+      <div
+        class="col-lg-6  position-relative align-self-start"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
+        <img
+          src="{% static 'assets/img/about2.png'%}"
+          class="img-fluid"
+          alt=""
+        />
+        <a
+          href="https://youtu.be/VAIxB9XeDRM?si=DameSEvhh0AZTXmM"
+          class="glightbox pulsating-play-btn"
+        ></a>
+      </div>
+      <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="200">
+        <h3>Mendorong Arus Pengetahuan untuk Inovasi Tepat Guna</h3>
+        <p class="">
+          Hamzanwadi Innovation dirancang sebagai alat strategis untuk mempromosikan dan menawarkan inovasi yang dihasilkan oleh mahasiswa Universitas Hamzanwadi kepada masyarakat luas, terutama industri. Platform ini berfungsi sebagai media komunikasi online untuk menjembatani inovator dengan calon pengguna teknologi atau mitra bisnis. Kami percaya peningkatan knowledge flow (arus pengetahuan) sangat penting untuk memformulasikan riset yang lebih tajam, menjawab kebutuhan industri, dan mendorong komersialisasi.
+        </p>
+         <ul>
+              <li><i class="bi bi-check2-all"></i> <span>Menampilkan proyek unggulan: Dari Robotika, perangkat lunak, hingga penelitian terapan</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Menginspirasi kreativitas: Mendorong lebih banyak mahasiswa untuk berani berkarya dan berinovasi</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Menjembatani talenta: Menghubungkan mahasiswa berbakat dengan peluan di dunia industri</span></li>
+        <!-- <p>
+          Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+          irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+          fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
+        </p> -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /About Section -->
+
+<!-- Stats Section -->
+<!-- <section id="stats" class="stats section">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row gy-4">
+      <div class="col-lg-3 col-md-6">
+        <div class="stats-item text-center w-100 h-100">
+          <span
+            data-purecounter-start="0"
+            data-purecounter-end="232"
+            data-purecounter-duration="1"
+            class="purecounter"
+          ></span>
+          <p>Clients</p>
+        </div>
+      </div>
+      End Stats Item -->
+<!-- 
+      <div class="col-lg-3 col-md-6">
+        <div class="stats-item text-center w-100 h-100">
+          <span
+            data-purecounter-start="0"
+            data-purecounter-end="521"
+            data-purecounter-duration="1"
+            class="purecounter"
+          ></span>
+          <p>Projects</p>
+        </div>
+      </div> -->
+      <!-- End Stats Item -->
+
+      <!-- <div class="col-lg-3 col-md-6">
+        <div class="stats-item text-center w-100 h-100">
+          <span
+            data-purecounter-start="0"
+            data-purecounter-end="1453"
+            data-purecounter-duration="1"
+            class="purecounter"
+          ></span>
+          <p>Hours Of Support</p>
+        </div>
+      </div> -->
+      <!-- End Stats Item -->
+
+      <!-- <div class="col-lg-3 col-md-6">
+        <div class="stats-item text-center w-100 h-100">
+          <span
+            data-purecounter-start="0"
+            data-purecounter-end="32"
+            data-purecounter-duration="1"
+            class="purecounter"
+          ></span>
+          <p>Workers</p>
+        </div>
+      </div> -->
+      <!-- End Stats Item -->
+    <!-- </div>
+  </div>
+</section> -->
+<!-- /Stats Section -->
+
+<!-- Portfolio Section -->
+<section id="portfolio" class="portfolio section">
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <span>Produk Inovasi</span>
+    <h2>Produk Inovasi</h2>
+    <p>Produk asli inovasi mahasiswa universitas Hamzanwadi</p>
+  </div>
+  <!-- End Section Title -->
+
+  <div class="container">
+    <div
+      class="isotope-layout"
+      data-default-filter="*"
+      data-layout="masonry"
+      data-sort="original-order"
+    >
+      <ul
+        class="portfolio-filters isotope-filters"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
+        <!-- <li data-filter="*" class="filter-active">All</li>
+        <li data-filter=".filter-app">App</li>
+        <li data-filter=".filter-product">Product</li>
+        <li data-filter=".filter-branding">Branding</li>
+        <li data-filter=".filter-books">Books</li> -->
+      </ul>
+      <!-- End Portfolio Filters -->
+
+      <div
+        class="row gy-4 isotope-container"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
+        {% for b in berita %}
+        <div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-app">
+            {% if b.gambar %}
+          <img src="{{b.gambar.url}}" class="img-fluid" alt="" />
+          {% endif %}
+          <div class="portfolio-info">
+            <h4>{{ b.judul }}</h4>
+            <p>{{ b.tanggal|date:"d M Y"}}</p>
+            <a
+              href="{% static 'assets/img/portfolio/app-1.jpg'%}"
+              title="App 1"
+              data-gallery="portfolio-gallery-app"
+              class="glightbox preview-link"
+              ><i class="bi bi-zoom-in"></i
+            ></a>
+            <a
+              href="{% url 'detail_berita' b.slug %}"
+              title="More Details"
+              class="details-link"
+              ><i class="bi bi-link-45deg"></i
+            ></a>
+          </div>
+        </div>
+        <!-- End Portfolio Item -->
+        {% endfor %}
+      </div>
+      <!-- End Portfolio Container -->
+    </div>
+  </div>
+</section>
+<!-- /Portfolio Section -->
+{% else %} 
+{% endif %} 
+{% endblock %}
